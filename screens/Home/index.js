@@ -1,7 +1,13 @@
 import React, { useState } from "react";
+// import { useFocusEffect } from 'expo-navigation';
+// import { useLinking } from 'react-navigation';
+import { useRoute } from "@react-navigation/native";
+
+import { NavigationContainer } from "react-navigation";
 import {
   StyleSheet,
   View,
+  TextInput,
   Text,
   Dimensions,
   ScrollView,
@@ -329,36 +335,91 @@ const slideList = Array.from({ length: 10 }).map((_, i) => {
   };
 });
 
-const Home = ({ navigation }) => {
-  const [modalVisible, setModalVisible] = useState(false);
+const Home = ({ navigation }) => { 
+  // console.log(window);
+  const route = useRoute();
+  console.log(route.name);
+  const [searchTerm, setSearchTerm] = useState("");
+  const handleSearchChange = (e) => {
+    setSearchTerm(e);
+    console.log(searchTerm);
+  };
+
   return (
-    <ScrollView style={styles.scollContainer}>
-      <TouchableOpacity onPress={() => navigation.navigate("Categories")}>
-        
-      </TouchableOpacity>
-      <View style={styles.cardWrap}>
-        {recipes.map((recipe, index) => (
-          <>
-            <TouchableOpacity key={index} style={styles.touchCard}>
-              <RecipeCard
-                photosArray={recipe.photosArray}
-                recipeName={recipe.title}
-                recipeTime={recipe.time}
-                recipeCategory={"Cookies"}
-                recipeDescription={recipe.description}
-                recipeImg={recipe.photo_url}
-              />
-            </TouchableOpacity>
-          </>
-        ))}
-      </View>
-    </ScrollView>
+    <>
+     
+      {route.name === "Search" ? (
+        <>
+          <View style={styles.inputContainer}>
+            <View style={styles.inputRect}>
+              <TextInput
+                placeholder="Search..."
+                style={styles.placeholder}
+                value={searchTerm}
+                onChangeText={(e)=>handleSearchChange(e)}
+              ></TextInput>
+            </View>
+          </View>
+        </>
+      ) : null}
+      <ScrollView style={styles.scollContainer}>
+        <TouchableOpacity
+          onPress={() => navigation.navigate("Categories")}
+        ></TouchableOpacity>
+        <View style={styles.cardWrap}>
+          {recipes
+            ?.filter((recipe) =>
+            recipe?.title.toLowerCase().includes(searchTerm.toLowerCase())
+          )
+          .map((recipe, index) => (
+            <>
+              <TouchableOpacity key={index} style={styles.touchCard}>
+                <RecipeCard
+                  photosArray={recipe.photosArray}
+                  recipeName={recipe.title}
+                  searchTerm={searchTerm}
+                  recipeTime={recipe.time}
+                  recipeCategory={"Cookies"}
+                  recipeDescription={recipe.description}
+                  recipeImg={recipe.photo_url}
+                />
+              </TouchableOpacity>
+            </>
+          ))}
+        </View>
+      </ScrollView>
+       
+    </>
     // </View>
   );
 };
 
 export default Home;
 const styles = StyleSheet.create({
+  inputContainer: {
+    // marginTop: 20,
+    height: 38,
+    width: "100%",  
+    height: 108,
+    backgroundColor: "rgba(255,255,255,1)",
+    height: 38
+  },
+  inputRect: {
+    width: 215,
+    
+    marginLeft:"auto",
+    marginRight:"auto",
+   
+    height: 38,
+    backgroundColor: "rgba(237,237,237,1)",
+    borderRadius: 12
+  },
+  placeholder: { 
+    color: "#121212",
+    height: 38,
+    width: 194,
+    marginLeft: 21
+  },
   centeredView: {
     flex: 1,
     justifyContent: "center",
@@ -410,7 +471,7 @@ const styles = StyleSheet.create({
   scollContainer: {
     flex: 1,
     backgroundColor: "#fff",
-    paddingTop: 20,
+    paddingTop: 20, 
     width: "100%",
   },
   cardWrap: {

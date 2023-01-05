@@ -49,10 +49,11 @@ const RecipeCard = ({
   recipeDescription,
   recipeImg,
   photosArray,
+  
   recipeTime,
 }) => {
   const [modalVisible, setModalVisible] = useState(false);
-  console.log(photosArray);
+  // console.log(photosArray);
   return (
     <>
       <Modal
