@@ -2,19 +2,19 @@ import { StatusBar } from 'expo-status-bar';
 import { StyleSheet, Text, View } from 'react-native'; 
 import { NavigationContainer } from '@react-navigation/native';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
-
+import { createDrawerNavigator } from '@react-navigation/drawer';
 import Home from './screens/Home';  
 import Categories from './screens/Categories';
-const Stack = createNativeStackNavigator();
+// const Stack = createNativeStackNavigator();
+const Drawer = createDrawerNavigator();
 export default function App() {
   return (  
     <NavigationContainer>
-      <Stack.Navigator >
-      <Stack.Screen name="Home" component={Home} />
-      <Stack.Screen name="Categories" component={Categories} />
-      </Stack.Navigator>
-    </NavigationContainer>
-      // <Home/>/   
+      <Drawer.Navigator >
+      <Drawer.Screen name="Home" component={Home} />
+      <Drawer.Screen name="Categories" component={Categories} />
+      </Drawer.Navigator>
+    </NavigationContainer> 
      
   );
 }

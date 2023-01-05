@@ -1,5 +1,16 @@
-import React from "react";
-import { StyleSheet, View, Text, ScrollView,TouchableOpacity} from "react-native";
+import React, { useState } from "react";
+import {
+  StyleSheet,
+  View,
+  Text,
+  Dimensions,
+  ScrollView,
+  Image,
+  TouchableOpacity,
+  Modal,
+  FlatList,
+  PanResponder,
+} from "react-native";
 import RecipeCard from "../../components/RecipeCard";
 const recipes = [
   {
@@ -308,21 +319,39 @@ const recipes = [
       "-- Cook noodles according to package directions; drain. Meanwhile, in a Dutch oven, cook sausage, beef and onion over medium heat 8-10 minutes or until meat is no longer pink, breaking up meat into crumbles. Add garlic; cook 1 minute. Drain. Stir in tomatoes, tomato paste, water, sugar, 3 tablespoons parsley, basil, fennel, 1/2 teaspoon salt and pepper; bring to a boil. Reduce heat; simmer, uncovered, 30 minutes, stirring occasionally. In a small bowl, mix egg, ricotta cheese, and remaining parsley and salt. Preheat oven to 375°. Spread 2 cups meat sauce into an ungreased 13x9-in. baking dish. Layer with 3 noodles and a third of the ricotta mixture. Sprinkle with 1 cup mozzarella cheese and 2 tablespoons Parmesan cheese.\n\n -- Repeat layers twice. Top with remaining meat sauce and cheeses (dish will be full). Bake, covered, 25 minutes. Bake, uncovered, 25 minutes longer or until bubbly. Let stand 15 minutes before serving.",
   },
 ];
-const Home = ({ navigation }) => {
-  return ( 
-    <ScrollView style={styles.scollContainer}>
-      <TouchableOpacity onPress={() => navigation.navigate("Categories")} >
-    <Text>Navigate to Categories</Text>
-  </TouchableOpacity> 
-      <View style={styles.cardWrap}>
-        {recipes.map((recipe,index) => (
-          
 
-          <RecipeCard key={index}  recipeName={recipe.title} recipeCategory={"Cookies"}  recipeImg={recipe.photo_url}/>
-   
+const slideList = Array.from({ length: 10 }).map((_, i) => {
+  return {
+    id: i,
+    image: `https://picsum.photos/1440/2842?random=${i}`,
+    title: `This is the title! ${i + 1}`,
+    subtitle: `This is the subtitle ${i + 1}!`,
+  };
+});
+
+const Home = ({ navigation }) => {
+  const [modalVisible, setModalVisible] = useState(false);
+  return (
+    <ScrollView style={styles.scollContainer}>
+      <TouchableOpacity onPress={() => navigation.navigate("Categories")}>
+        
+      </TouchableOpacity>
+      <View style={styles.cardWrap}>
+        {recipes.map((recipe, index) => (
+          <>
+            <TouchableOpacity key={index} style={styles.touchCard}>
+              <RecipeCard
+                photosArray={recipe.photosArray}
+                recipeName={recipe.title}
+                recipeTime={recipe.time}
+                recipeCategory={"Cookies"}
+                recipeDescription={recipe.description}
+                recipeImg={recipe.photo_url}
+              />
+            </TouchableOpacity>
+          </>
         ))}
       </View>
-      
     </ScrollView>
     // </View>
   );
@@ -330,6 +359,54 @@ const Home = ({ navigation }) => {
 
 export default Home;
 const styles = StyleSheet.create({
+  centeredView: {
+    flex: 1,
+    justifyContent: "center",
+    alignItems: "center",
+    width: "100%",
+    height: "100%",
+    marginTop: 22,
+  },
+  modalView: {
+    margin: 20,
+    width: "100%",
+    height: "100%",
+    backgroundColor: "white",
+    borderRadius: 20,
+    padding: 35,
+    paddingLeft: 0,
+    paddingTop: 0,
+    paddingRight: 0,
+    alignItems: "center",
+    shadowColor: "#000",
+    shadowOffset: {
+      width: 0,
+      height: 2,
+    },
+    shadowOpacity: 0.25,
+    shadowRadius: 4,
+    elevation: 5,
+  },
+  button: {
+    borderRadius: 20,
+    padding: 10,
+    elevation: 2,
+  },
+  buttonOpen: {
+    backgroundColor: "#F194FF",
+  },
+  buttonClose: {
+    backgroundColor: "#2196F3",
+  },
+  textStyle: {
+    color: "white",
+    fontWeight: "bold",
+    textAlign: "center",
+  },
+  modalText: {
+    marginBottom: 15,
+    textAlign: "center",
+  },
   scollContainer: {
     flex: 1,
     backgroundColor: "#fff",
@@ -345,6 +422,8 @@ const styles = StyleSheet.create({
     flexDirection: "row",
     flexWrap: "wrap",
     justifyContent: "space-between",
- 
+  },
+  touchCard: {
+    width: "45%",
   },
 });
