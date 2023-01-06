@@ -35,7 +35,7 @@ const Ingredient = (props) => {
   const ingredientId = route.params?.ingredient;
   const ingredientUrl = fetchIngredientPhotoUrl(ingredientId);
   const ingredientName = route.params?.name;
-  const renderRecipes = ({ item }) => (
+  const renderValue = ({ item }) => (
     <TouchableOpacity>
       <TouchableOpacity>
         <View style={styles.container}>
@@ -69,7 +69,7 @@ const Ingredient = (props) => {
           showsVerticalScrollIndicator={false}
           numColumns={2}
           data={fetchRecipesByIngredientId(ingredientId)}
-          renderItem={renderRecipes}
+          renderItem={renderValue}
           keyExtractor={(item) => `${item.recipeId}`}
         />
       </View>

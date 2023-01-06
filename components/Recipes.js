@@ -31,7 +31,7 @@ const Recipes = (props) => {
       headerRight: () => <View />,
     });
   }, []);
-  const renderRecipes = ({ item }) => (
+  const renderValue = ({ item }) => (
     <TouchableOpacity>
       <View style={styles.container}>
         <Image style={styles.photo} source={{ uri: item.photo_url }} />
@@ -49,7 +49,7 @@ const Recipes = (props) => {
         showsVerticalScrollIndicator={false}
         numColumns={2}
         data={recipesArray}
-        renderItem={renderRecipes}
+        renderItem={renderValue}
         keyExtractor={(item) => `${item.recipeId}`}
       />
     </View>
