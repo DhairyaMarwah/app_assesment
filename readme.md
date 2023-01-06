@@ -10,9 +10,11 @@ Step 2:
 
 Step 3 :
 (for android studio)
-  Press ### `a`
+  Press
+  ### `a`
 
 or
 
 (for ios )
-  Press ### `i`
+  Press 
+  ### `i`
