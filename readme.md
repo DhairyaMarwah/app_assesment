@@ -31,7 +31,7 @@ expo version:
 
 
 react native version
-### `react-native`
+### `0.70.5`
 
 
 
