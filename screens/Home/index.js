@@ -10,7 +10,7 @@ import {
   TouchableOpacity,
 } from "react-native";
 import RecipeCard from "../../components/RecipeCard";
-import { getCategoryName } from "../../data/exportFunctions";
+import { fetchCategoryName } from "../../data/exportFunctions";
 import { recipes, categories, ingredients } from "../../data/data";
 
 const Home = ({ navigation }) => {
@@ -77,7 +77,7 @@ const Home = ({ navigation }) => {
                     recipeId={recipe.id}
                     ingredients={recipe.ingredients}
                     recipeTime={recipe.time}
-                    recipeCategory={getCategoryName(recipe.categoryId)}
+                    recipeCategory={fetchCategoryName(recipe.categoryId)}
                     recipeDescription={recipe.description}
                     recipeImg={recipe.photo_url}
                   />

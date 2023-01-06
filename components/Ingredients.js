@@ -12,7 +12,10 @@ import {
   TouchableHighlight,
   Image,
 } from "react-native";
-import { getAllIngredients, getIngredientName } from "../data/exportFunctions";
+import {
+  fetchAllIngredients,
+  fetchIngredientName,
+} from "../data/exportFunctions";
 const { width, height } = Dimensions.get("window");
 // orientation must fixed
 const SCREEN_WIDTH = width < height ? width : height;
@@ -25,10 +28,10 @@ const ITEM_MARGIN = ITEM_OFFSET * 2;
 const Ingredients = (props) => {
   const { navigation, route } = props;
   const item = route.params?.ingredients;
-  const ingredientsArray = getAllIngredients(item);
+  const ingredientsArray = fetchAllIngredients(item);
   console.log(ingredientsArray);
   const onPressIngredient = (item) => {
-    let name = getIngredientName(item.ingredientId);
+    let name = fetchIngredientName(item.ingredientId);
     let ingredient = item.ingredientId;
     navigation.navigate("Ingredient", { ingredient, name });
   };

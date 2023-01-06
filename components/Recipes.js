@@ -10,7 +10,7 @@ import {
 } from "react-native";
 import { TouchableOpacity } from "react-native-gesture-handler";
 
-import { getRecipes, getCategoryName } from "../data/exportFunctions";
+import { fetchRecipes, fetchCategoryName } from "../data/exportFunctions";
 const { width, height } = Dimensions.get("window");
 // orientation must fixed
 const SCREEN_WIDTH = width < height ? width : height;
@@ -23,7 +23,7 @@ const ITEM_MARGIN = ITEM_OFFSET * 2;
 const Recipes = (props) => {
   const { navigation, route } = props;
   const item = route?.params?.category;
-  const recipesArray = getRecipes(item.id);
+  const recipesArray = fetchRecipes(item.id);
 
   useLayoutEffect(() => {
     navigation.setOptions({
@@ -36,7 +36,9 @@ const Recipes = (props) => {
       <View style={styles.container}>
         <Image style={styles.photo} source={{ uri: item.photo_url }} />
         <Text style={styles.title}>{item.title}</Text>
-        <Text style={styles.category}>{getCategoryName(item.categoryId)}</Text>
+        <Text style={styles.category}>
+          {fetchCategoryName(item.categoryId)}
+        </Text>
       </View>
     </TouchableOpacity>
   );

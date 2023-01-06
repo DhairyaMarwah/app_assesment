@@ -1,7 +1,7 @@
 import React, { useLayoutEffect } from "react";
 import { StyleSheet, Text, View, ScrollView } from "react-native";
 import CategoryCard from "../../components/CategoryCard";
-import { getNumberOfRecipes } from "../../data/exportFunctions";
+import { fetchCountOfRecipes } from "../../data/exportFunctions";
 import { categories } from "../../data/data";
 import { TouchableOpacity } from "react-native-gesture-handler";
 import MenuImage from "../../components/HamburgerIcon/MenuImage";
@@ -39,7 +39,7 @@ const Categories = (props) => {
             <TouchableOpacity onPress={() => onPressCategory(item)}>
               <CategoryCard
                 key={index}
-                id={getNumberOfRecipes(item.id)}
+                id={fetchCountOfRecipes(item.id)}
                 name={item.name}
                 photo_url={item.photo_url}
               />

@@ -11,9 +11,9 @@ import {
 } from "react-native";
 import { TouchableOpacity } from "react-native-gesture-handler";
 import {
-  getIngredientUrl,
-  getRecipesByIngredient,
-  getCategoryName,
+  fetchIngredientPhotoUrl,
+  fetchRecipesByIngredientId,
+  fetchCategoryName,
 } from "../data/exportFunctions";
 const { width, height } = Dimensions.get("window");
 // orientation must fixed
@@ -33,7 +33,7 @@ const Ingredient = (props) => {
     });
   }, []);
   const ingredientId = route.params?.ingredient;
-  const ingredientUrl = getIngredientUrl(ingredientId);
+  const ingredientUrl = fetchIngredientPhotoUrl(ingredientId);
   const ingredientName = route.params?.name;
   const renderRecipes = ({ item }) => (
     <TouchableOpacity>
@@ -42,7 +42,7 @@ const Ingredient = (props) => {
           <Image style={styles.photo} source={{ uri: item.photo_url }} />
           <Text style={styles.title}>{item.title}</Text>
           <Text style={styles.category}>
-            {getCategoryName(item.categoryId)}
+            {fetchCategoryName(item.categoryId)}
           </Text>
         </View>
       </TouchableOpacity>
@@ -68,7 +68,7 @@ const Ingredient = (props) => {
           vertical
           showsVerticalScrollIndicator={false}
           numColumns={2}
-          data={getRecipesByIngredient(ingredientId)}
+          data={fetchRecipesByIngredientId(ingredientId)}
           renderItem={renderRecipes}
           keyExtractor={(item) => `${item.recipeId}`}
         />

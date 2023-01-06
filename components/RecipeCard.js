@@ -8,8 +8,8 @@ import {
   Image,
   Text,
   TouchableOpacity,
-} from "react-native"; 
-import { getCategoryName } from "../data/exportFunctions";
+} from "react-native";
+import { fetchCategoryName } from "../data/exportFunctions";
 const slideList2 = [
   "https://hips.hearstapps.com/hmg-prod.s3.amazonaws.com/images/delish-how-to-make-a-smoothie-horizontal-1542310071.png?crop=0.803xw:0.923xh;0.116xw,0.00510xh&resize=768:*",
   "https://www.vitamix.com/media/other/images/xVitamix-Triple-Berry-Smoothie-square-crop__1.jpg.pagespeed.ic.OgTC3ILD3R.jpg",
@@ -47,7 +47,7 @@ const RecipeCard = ({
   navigation,
   recipeTime,
 }) => {
-  const [modalVisible, setModalVisible] = useState(false); 
+  const [modalVisible, setModalVisible] = useState(false);
   const numberObjects = photosArray.map((number) => ({ image: number }));
   return (
     <>
@@ -77,17 +77,21 @@ const RecipeCard = ({
               <Text style={styles.openRecipeTime}>{recipeTime} minutes</Text>
               <TouchableOpacity
                 style={styles.secondaryButton}
-                onPress={() =>
-                  {
-                     navigation.navigate('Ingredients',{ingredients,recipeName,recipeId}); 
-                     setModalVisible(!modalVisible)
-                    }
-                }
+                onPress={() => {
+                  navigation.navigate("Ingredients", {
+                    ingredients,
+                    recipeName,
+                    recipeId,
+                  });
+                  setModalVisible(!modalVisible);
+                }}
                 // onPress={() => setModalVisible(!modalVisible)}
               >
                 <Text style={styles.secondaryButtonBg}>View ingredients</Text>
               </TouchableOpacity>
-              <Text style={styles.openRecipeDesc}>{recipeDescription.slice(0,240)} .. </Text>
+              <Text style={styles.openRecipeDesc}>
+                {recipeDescription.slice(0, 240)} ..{" "}
+              </Text>
             </View>
             {/* <View> */}
             {/* <Image
@@ -125,10 +129,10 @@ const RecipeCard = ({
   );
 };
 const styles = StyleSheet.create({
-  openRecipeDesc:{
+  openRecipeDesc: {
     color: "#000",
     fontSize: 14,
-    marginTop: 15, 
+    marginTop: 15,
     paddingLeft: 30,
     paddingRight: 30,
   },
