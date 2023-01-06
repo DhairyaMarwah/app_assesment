@@ -9,7 +9,7 @@ import Ingredients from '../components/Ingredients';
 import Ingredient from '../components/Ingredient';
 import DrawerContainer from "../screens/Drawer/DrawerContainer";
 const Stack = createNativeStackNavigator();
-function MainNavigator() {
+function OurNavigation() {
     return(
       <Stack.Navigator
         screenOptions={{
@@ -42,7 +42,7 @@ function MainNavigator() {
         screenOptions={{headerShown: false}}
         drawerContent={({navigation})=> <DrawerContainer navigation={navigation}/>}
       >
-        <Drawer.Screen name='Main' component={MainNavigator} />
+        <Drawer.Screen name='Main' component={OurNavigation} />
       </Drawer.Navigator>
     )
   } 
