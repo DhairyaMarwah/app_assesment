@@ -11,13 +11,13 @@ Step 2:
 Step 3 :
 (for android studio)
   Press
-  ### `a`
+      ### `a`
 
 or
 
 (for ios )
   Press 
-  ### `i`
+      ### `i`
 
 
 APP is using node version 
