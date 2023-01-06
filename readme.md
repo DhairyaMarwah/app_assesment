@@ -18,3 +18,7 @@ or
 (for ios )
   Press 
   ### `i`
+
+
+APP is using node version 
+### `v18.12.1`
