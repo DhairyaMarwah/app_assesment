@@ -1,10 +1,10 @@
-import React,{useLayoutEffect} from "react";
-import { StyleSheet, Text, View,ScrollView } from "react-native";
+import React, { useLayoutEffect } from "react";
+import { StyleSheet, Text, View, ScrollView } from "react-native";
 import CategoryCard from "../../components/CategoryCard";
 import { getNumberOfRecipes } from "../../data/exportFunctions";
-import { categories } from "../../data/data"; 
+import { categories } from "../../data/data";
 import { TouchableOpacity } from "react-native-gesture-handler";
-import MenuImage from "../../components/MenuImage/MenuImage";
+import MenuImage from "../../components/HamburgerIcon/MenuImage";
 
 const Categories = (props) => {
   const { navigation } = props;
@@ -34,16 +34,19 @@ const Categories = (props) => {
   return (
     <ScrollView style={styles.scollContainer}>
       <View style={styles.container}>
-        {categories.map((item,index) => {
+        {categories.map((item, index) => {
           return (
             <TouchableOpacity onPress={() => onPressCategory(item)}>
-
-           <CategoryCard key={index} id={getNumberOfRecipes(item.id)} name={item.name} photo_url={item.photo_url} />
+              <CategoryCard
+                key={index}
+                id={getNumberOfRecipes(item.id)}
+                name={item.name}
+                photo_url={item.photo_url}
+              />
             </TouchableOpacity>
           );
         })}
-        </View>
-
+      </View>
     </ScrollView>
   );
 };
@@ -60,5 +63,5 @@ const styles = StyleSheet.create({
     width: "90%",
     marginLeft: "auto",
     marginRight: "auto",
-  }
+  },
 });

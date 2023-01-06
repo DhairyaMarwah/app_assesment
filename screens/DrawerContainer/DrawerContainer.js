@@ -2,7 +2,7 @@ import React from "react";
 import { View } from "react-native";
 import PropTypes from "prop-types";
 import styles from "./styles";
-import MenuButton from "../../components/MenuButton/MenuButton";
+import MenuButton from "../../components/Hamburger/MenuButton";
 
 export default function DrawerContainer(props) {
   const { navigation } = props;

@@ -1,19 +1,19 @@
-import React, { useState ,useLayoutEffect} from "react"; 
-import { useRoute } from "@react-navigation/native"; 
+import React, { useState, useLayoutEffect } from "react";
+import { useRoute } from "@react-navigation/native";
 import { NavigationContainer } from "react-navigation";
-import MenuImage from "../../components/MenuImage/MenuImage";
+import MenuImage from "../../components/HamburgerIcon/MenuImage";
 import {
   StyleSheet,
   View,
   TextInput,
-  Text, 
-  ScrollView, 
-  TouchableOpacity, 
+  Text,
+  ScrollView,
+  TouchableOpacity,
 } from "react-native";
 import RecipeCard from "../../components/RecipeCard";
 import { getCategoryName } from "../../data/exportFunctions";
 import { recipes, categories, ingredients } from "../../data/data";
- 
+
 const Home = ({ navigation }) => {
   useLayoutEffect(() => {
     navigation.setOptions({
@@ -32,9 +32,9 @@ const Home = ({ navigation }) => {
       ),
       headerRight: () => <View />,
     });
-  }, []);  
+  }, []);
   const route = useRoute();
-  
+
   console.log(route.name);
   const [searchTerm, setSearchTerm] = useState("");
   const handleSearchChange = (e) => {
@@ -44,7 +44,6 @@ const Home = ({ navigation }) => {
 
   return (
     <>
-     
       {route.name === "Search" ? (
         <>
           <View style={styles.inputContainer}>
@@ -53,7 +52,7 @@ const Home = ({ navigation }) => {
                 placeholder="Search..."
                 style={styles.placeholder}
                 value={searchTerm}
-                onChangeText={(e)=>handleSearchChange(e)}
+                onChangeText={(e) => handleSearchChange(e)}
               ></TextInput>
             </View>
           </View>
@@ -66,29 +65,28 @@ const Home = ({ navigation }) => {
         <View style={styles.cardWrap}>
           {recipes
             ?.filter((recipe) =>
-            recipe?.title.toLowerCase().includes(searchTerm.toLowerCase())
-          )
-          .map((recipe, index) => (
-            <>
-              <TouchableOpacity key={index} style={styles.touchCard}>
-                <RecipeCard
-                  photosArray={recipe.photosArray}
-                  recipeName={recipe.title}
-                  navigation={navigation}
-                  searchTerm={searchTerm}
-                  recipeId={recipe.id}
-                  ingredients={recipe.ingredients}
-                  recipeTime={recipe.time}
-                  recipeCategory={getCategoryName(recipe.categoryId)}
-                  recipeDescription={recipe.description}
-                  recipeImg={recipe.photo_url}
-                />
-              </TouchableOpacity>
-            </>
-          ))}
+              recipe?.title.toLowerCase().includes(searchTerm.toLowerCase())
+            )
+            .map((recipe, index) => (
+              <>
+                <TouchableOpacity key={index} style={styles.touchCard}>
+                  <RecipeCard
+                    photosArray={recipe.photosArray}
+                    recipeName={recipe.title}
+                    navigation={navigation}
+                    searchTerm={searchTerm}
+                    recipeId={recipe.id}
+                    ingredients={recipe.ingredients}
+                    recipeTime={recipe.time}
+                    recipeCategory={getCategoryName(recipe.categoryId)}
+                    recipeDescription={recipe.description}
+                    recipeImg={recipe.photo_url}
+                  />
+                </TouchableOpacity>
+              </>
+            ))}
         </View>
       </ScrollView>
-       
     </>
     // </View>
   );
@@ -99,26 +97,26 @@ const styles = StyleSheet.create({
   inputContainer: {
     // marginTop: 20,
     height: 38,
-    width: "100%",  
+    width: "100%",
     height: 108,
     backgroundColor: "rgba(255,255,255,1)",
-    height: 38
+    height: 38,
   },
   inputRect: {
     width: 215,
-    
-    marginLeft:"auto",
-    marginRight:"auto",
-   
+
+    marginLeft: "auto",
+    marginRight: "auto",
+
     height: 38,
     backgroundColor: "rgba(237,237,237,1)",
-    borderRadius: 12
+    borderRadius: 12,
   },
-  placeholder: { 
+  placeholder: {
     color: "#121212",
     height: 38,
     width: 194,
-    marginLeft: 21
+    marginLeft: 21,
   },
   centeredView: {
     flex: 1,
@@ -171,7 +169,7 @@ const styles = StyleSheet.create({
   scollContainer: {
     flex: 1,
     backgroundColor: "#fff",
-    paddingTop: 20, 
+    paddingTop: 20,
     width: "100%",
   },
   cardWrap: {
