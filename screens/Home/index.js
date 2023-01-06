@@ -1,6 +1,7 @@
-import React, { useState } from "react"; 
+import React, { useState ,useLayoutEffect} from "react"; 
 import { useRoute } from "@react-navigation/native"; 
 import { NavigationContainer } from "react-navigation";
+import MenuImage from "../../components/MenuImage/MenuImage";
 import {
   StyleSheet,
   View,
@@ -13,7 +14,25 @@ import RecipeCard from "../../components/RecipeCard";
 import { getCategoryName } from "../../data/exportFunctions";
 import { recipes, categories, ingredients } from "../../data/data";
  
-const Home = ({ navigation }) => {  
+const Home = ({ navigation }) => {
+  useLayoutEffect(() => {
+    navigation.setOptions({
+      headerTitleStyle: {
+        fontWeight: "bold",
+        textAlign: "center",
+        alignSelf: "center",
+        flex: 1,
+      },
+      headerLeft: () => (
+        <MenuImage
+          onPress={() => {
+            navigation.openDrawer();
+          }}
+        />
+      ),
+      headerRight: () => <View />,
+    });
+  }, []);  
   const route = useRoute();
   
   console.log(route.name);

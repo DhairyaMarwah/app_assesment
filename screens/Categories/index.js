@@ -1,9 +1,10 @@
-import React from "react";
+import React,{useLayoutEffect} from "react";
 import { StyleSheet, Text, View,ScrollView } from "react-native";
 import CategoryCard from "../../components/CategoryCard";
 import { getNumberOfRecipes } from "../../data/exportFunctions";
 import { categories } from "../../data/data"; 
 import { TouchableOpacity } from "react-native-gesture-handler";
+import MenuImage from "../../components/MenuImage/MenuImage";
 
 const Categories = (props) => {
   const { navigation } = props;
@@ -12,6 +13,24 @@ const Categories = (props) => {
     const category = item;
     navigation.navigate("RecipesList", { category, title });
   };
+  useLayoutEffect(() => {
+    navigation.setOptions({
+      headerTitleStyle: {
+        fontWeight: "bold",
+        textAlign: "center",
+        alignSelf: "center",
+        flex: 1,
+      },
+      headerLeft: () => (
+        <MenuImage
+          onPress={() => {
+            navigation.openDrawer();
+          }}
+        />
+      ),
+      headerRight: () => <View />,
+    });
+  }, []);
   return (
     <ScrollView style={styles.scollContainer}>
       <View style={styles.container}>
