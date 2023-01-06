@@ -17,9 +17,9 @@ const SCREEN_WIDTH = width < height ? width : height;
 const recipeNumColums = 2;
 const numColumns = 3;
 // item size
-const RECIPE_ITEM_HEIGHT = 100;
-const RECIPE_ITEM_OFFSET = 10;
-const RECIPE_ITEM_MARGIN = RECIPE_ITEM_OFFSET * 2;
+const ITEM_HEIGHT = 100;
+const ITEM_OFFSET = 10;
+const ITEM_MARGIN = ITEM_OFFSET * 2;
 const Recipes = (props) => {
   const { navigation, route } = props;
   const item = route?.params?.category;
@@ -60,21 +60,19 @@ const styles = StyleSheet.create({
     flex: 1,
     justifyContent: "center",
     alignItems: "center",
-    marginLeft: RECIPE_ITEM_MARGIN,
+    marginLeft: ITEM_MARGIN,
     marginTop: 20,
     width:
-      (SCREEN_WIDTH - (recipeNumColums + 1) * RECIPE_ITEM_MARGIN) /
-      recipeNumColums,
-    height: RECIPE_ITEM_HEIGHT + 75,
+      (SCREEN_WIDTH - (recipeNumColums + 1) * ITEM_MARGIN) / recipeNumColums,
+    height: ITEM_HEIGHT + 75,
     borderColor: "#cccccc",
     borderWidth: 0.5,
     borderRadius: 15,
   },
   photo: {
     width:
-      (SCREEN_WIDTH - (recipeNumColums + 1) * RECIPE_ITEM_MARGIN) /
-      recipeNumColums,
-    height: RECIPE_ITEM_HEIGHT,
+      (SCREEN_WIDTH - (recipeNumColums + 1) * ITEM_MARGIN) / recipeNumColums,
+    height: ITEM_HEIGHT,
     borderRadius: 15,
     borderBottomLeftRadius: 0,
     borderBottomRightRadius: 0,

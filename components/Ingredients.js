@@ -19,9 +19,9 @@ const SCREEN_WIDTH = width < height ? width : height;
 
 const numColumns = 3;
 // item size
-const RECIPE_ITEM_HEIGHT = 100;
-const RECIPE_ITEM_OFFSET = 10;
-const RECIPE_ITEM_MARGIN = RECIPE_ITEM_OFFSET * 2;
+const ITEM_HEIGHT = 100;
+const ITEM_OFFSET = 10;
+const ITEM_MARGIN = ITEM_OFFSET * 2;
 const Ingredients = (props) => {
   const { navigation, route } = props;
   const item = route.params?.ingredients;
