@@ -8,22 +8,15 @@ import {
   Image,
   Text,
   TouchableOpacity,
-} from "react-native";
-// const slideList = Array.from({ length: 10 }).map((_, i) => {
-//   return {
-//     id: i,
-//     image: `https://picsum.photos/1440/2842?random=${i}`,
-//     title: `This is the title! ${i + 1}`,
-//     subtitle: `This is the subtitle ${i + 1}!`,
-//   };
-// });
+} from "react-native"; 
+import { getCategoryName } from "../data/exportFunctions";
 const slideList2 = [
   "https://hips.hearstapps.com/hmg-prod.s3.amazonaws.com/images/delish-how-to-make-a-smoothie-horizontal-1542310071.png?crop=0.803xw:0.923xh;0.116xw,0.00510xh&resize=768:*",
   "https://www.vitamix.com/media/other/images/xVitamix-Triple-Berry-Smoothie-square-crop__1.jpg.pagespeed.ic.OgTC3ILD3R.jpg",
   "http://images.media-allrecipes.com/userphotos/960x960/3798204.jpg",
   "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTrzui8MM6W66I29VZwVvcjpGv99JW3O1owgupc3KwB65rhAyrZ",
 ];
-const numberObjects = slideList2.map((number) => ({ image: number }));
+
 const { width: windowWidth, height: windowHeight } = Dimensions.get("window");
 function Slide({ data }) {
   return (
@@ -48,12 +41,14 @@ const RecipeCard = ({
   recipeName,
   recipeDescription,
   recipeImg,
+  recipeId,
   photosArray,
-  
+  ingredients,
+  navigation,
   recipeTime,
 }) => {
-  const [modalVisible, setModalVisible] = useState(false);
-  // console.log(photosArray);
+  const [modalVisible, setModalVisible] = useState(false); 
+  const numberObjects = photosArray.map((number) => ({ image: number }));
   return (
     <>
       <Modal
@@ -78,10 +73,16 @@ const RecipeCard = ({
             />
             <View style={styles.description}>
               <Text style={styles.openRecipeName}>{recipeName}</Text>
-              <Text style={styles.openRecipeCategory}>Smoothie</Text>
+              <Text style={styles.openRecipeCategory}>{recipeCategory}</Text>
               <Text style={styles.openRecipeTime}>{recipeTime} minutes</Text>
               <TouchableOpacity
                 style={styles.secondaryButton}
+                onPress={() =>
+                  {
+                     navigation.navigate('Ingredients',{ingredients,recipeName,recipeId}); 
+                     setModalVisible(!modalVisible)
+                    }
+                }
                 // onPress={() => setModalVisible(!modalVisible)}
               >
                 <Text style={styles.secondaryButtonBg}>View ingredients</Text>
