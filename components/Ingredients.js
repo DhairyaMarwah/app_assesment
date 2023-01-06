@@ -1,4 +1,5 @@
 import React from "react";
+import styles from "./IngredientsStyle";
 import {
   StyleSheet,
   Dimensions,
@@ -55,28 +56,4 @@ const Ingredients = (props) => {
     />
   );
 };
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    alignItems: "center",
-    margin: RECIPE_ITEM_OFFSET,
-    width:
-      (SCREEN_WIDTH - RECIPE_ITEM_MARGIN) / numColumns - RECIPE_ITEM_OFFSET,
-    height: RECIPE_ITEM_HEIGHT + 60,
-    marginTop: 30,
-  },
-  title: {
-    margin: 10,
-    marginBottom: 5,
-    color: "black",
-    fontSize: 13,
-    textAlign: "center",
-  },
-  photo: {
-    borderRadius: 60,
-    width:
-      (SCREEN_WIDTH - RECIPE_ITEM_MARGIN) / numColumns - RECIPE_ITEM_OFFSET,
-    height: RECIPE_ITEM_HEIGHT,
-  },
-});
 export default Ingredients;

@@ -1,6 +1,5 @@
 import React, { useState, useLayoutEffect } from "react";
 import { useRoute } from "@react-navigation/native";
-import { NavigationContainer } from "react-navigation";
 import MenuImage from "../../components/HamburgerIcon/MenuImage";
 import {
   StyleSheet,

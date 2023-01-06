@@ -7,7 +7,7 @@ import Categories from '../screens/Categories';
 import Recipes from '../components/Recipes';
 import Ingredients from '../components/Ingredients';
 import Ingredient from '../components/Ingredient';
-import DrawerContainer from "../screens/DrawerContainer/DrawerContainer";
+import DrawerContainer from "../screens/Drawer/DrawerContainer";
 const Stack = createNativeStackNavigator();
 function MainNavigator() {
     return(

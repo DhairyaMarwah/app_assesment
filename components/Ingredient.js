@@ -1,5 +1,4 @@
 import React,{useLayoutEffect} from 'react'
-
 import {Dimensions, StyleSheet,FlatList, ScrollView, Text, View, Image, TouchableHighlight } from "react-native";
 import { TouchableOpacity } from 'react-native-gesture-handler';
 import { getIngredientUrl, getRecipesByIngredient, getCategoryName } from '../data/exportFunctions';
