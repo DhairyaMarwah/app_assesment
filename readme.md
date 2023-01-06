@@ -11,14 +11,17 @@ Step 2:
 Step 3 :
 (for android studio)
   Press
-      ### `a`
+### `a`
 
 or
 
 (for ios )
   Press 
-      ### `i`
+### `i`
 
 
 APP is using node version 
 ### `v18.12.1`
+
+demo :
+<img width="564" alt="Screenshot 2023-01-06 at 6 57 57 PM" src="https://user-images.githubusercontent.com/85454844/211021755-e2db737e-984d-4568-a089-328c5a75104a.png">
